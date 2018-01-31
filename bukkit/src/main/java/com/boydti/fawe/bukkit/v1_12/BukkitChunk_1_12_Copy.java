@@ -1,9 +1,9 @@
 package com.boydti.fawe.bukkit.v1_12;
 
 import com.boydti.fawe.object.FaweQueue;
-import net.minecraft.server.v1_12_R1.ChunkSection;
-import net.minecraft.server.v1_12_R1.DataPaletteBlock;
-import net.minecraft.server.v1_12_R1.NibbleArray;
+import net.minecraft.server.ChunkSection;
+import net.minecraft.server.DataPaletteBlock;
+import net.minecraft.server.NibbleArray;
 
 public class BukkitChunk_1_12_Copy extends BukkitChunk_1_12 {
     public final byte[][] idsBytes;

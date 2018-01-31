@@ -17,17 +17,17 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import net.minecraft.server.v1_12_R1.BaseBlockPosition;
-import net.minecraft.server.v1_12_R1.Block;
-import net.minecraft.server.v1_12_R1.BlockStateDirection;
-import net.minecraft.server.v1_12_R1.BlockStateList;
-import net.minecraft.server.v1_12_R1.EnumDirection;
-import net.minecraft.server.v1_12_R1.EnumPistonReaction;
-import net.minecraft.server.v1_12_R1.IBlockData;
-import net.minecraft.server.v1_12_R1.IBlockState;
-import net.minecraft.server.v1_12_R1.Material;
-import net.minecraft.server.v1_12_R1.MinecraftKey;
-import net.minecraft.server.v1_12_R1.Vec3D;
+import net.minecraft.server.BaseBlockPosition;
+import net.minecraft.server.Block;
+import net.minecraft.server.BlockStateDirection;
+import net.minecraft.server.BlockStateList;
+import net.minecraft.server.EnumDirection;
+import net.minecraft.server.EnumPistonReaction;
+import net.minecraft.server.IBlockData;
+import net.minecraft.server.IBlockState;
+import net.minecraft.server.Material;
+import net.minecraft.server.MinecraftKey;
+import net.minecraft.server.Vec3D;
 
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class NMSRegistryDumper {

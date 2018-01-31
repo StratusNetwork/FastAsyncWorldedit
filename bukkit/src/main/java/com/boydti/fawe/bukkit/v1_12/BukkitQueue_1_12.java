@@ -44,55 +44,55 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.atomic.LongAdder;
-import net.minecraft.server.v1_12_R1.BiomeBase;
-import net.minecraft.server.v1_12_R1.BiomeCache;
-import net.minecraft.server.v1_12_R1.Block;
-import net.minecraft.server.v1_12_R1.BlockPosition;
-import net.minecraft.server.v1_12_R1.ChunkProviderGenerate;
-import net.minecraft.server.v1_12_R1.ChunkProviderServer;
-import net.minecraft.server.v1_12_R1.ChunkSection;
-import net.minecraft.server.v1_12_R1.DataPaletteBlock;
-import net.minecraft.server.v1_12_R1.Entity;
-import net.minecraft.server.v1_12_R1.EntityPlayer;
-import net.minecraft.server.v1_12_R1.EntityTracker;
-import net.minecraft.server.v1_12_R1.EntityTypes;
-import net.minecraft.server.v1_12_R1.EnumDifficulty;
-import net.minecraft.server.v1_12_R1.EnumGamemode;
-import net.minecraft.server.v1_12_R1.EnumSkyBlock;
-import net.minecraft.server.v1_12_R1.IBlockData;
-import net.minecraft.server.v1_12_R1.IDataManager;
-import net.minecraft.server.v1_12_R1.MinecraftServer;
-import net.minecraft.server.v1_12_R1.NBTTagCompound;
-import net.minecraft.server.v1_12_R1.NibbleArray;
-import net.minecraft.server.v1_12_R1.PacketDataSerializer;
-import net.minecraft.server.v1_12_R1.PacketPlayOutMapChunk;
-import net.minecraft.server.v1_12_R1.PacketPlayOutMultiBlockChange;
-import net.minecraft.server.v1_12_R1.PlayerChunk;
-import net.minecraft.server.v1_12_R1.PlayerChunkMap;
-import net.minecraft.server.v1_12_R1.RegionFile;
-import net.minecraft.server.v1_12_R1.RegionFileCache;
-import net.minecraft.server.v1_12_R1.ServerNBTManager;
-import net.minecraft.server.v1_12_R1.TileEntity;
-import net.minecraft.server.v1_12_R1.WorldChunkManager;
-import net.minecraft.server.v1_12_R1.WorldData;
-import net.minecraft.server.v1_12_R1.WorldManager;
-import net.minecraft.server.v1_12_R1.WorldServer;
-import net.minecraft.server.v1_12_R1.WorldSettings;
-import net.minecraft.server.v1_12_R1.WorldType;
+import net.minecraft.server.BiomeBase;
+import net.minecraft.server.BiomeCache;
+import net.minecraft.server.Block;
+import net.minecraft.server.BlockPosition;
+import net.minecraft.server.ChunkProviderGenerate;
+import net.minecraft.server.ChunkProviderServer;
+import net.minecraft.server.ChunkSection;
+import net.minecraft.server.DataPaletteBlock;
+import net.minecraft.server.Entity;
+import net.minecraft.server.EntityPlayer;
+import net.minecraft.server.EntityTracker;
+import net.minecraft.server.EntityTypes;
+import net.minecraft.server.EnumDifficulty;
+import net.minecraft.server.EnumGamemode;
+import net.minecraft.server.EnumSkyBlock;
+import net.minecraft.server.IBlockData;
+import net.minecraft.server.IDataManager;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.NBTTagCompound;
+import net.minecraft.server.NibbleArray;
+import net.minecraft.server.PacketDataSerializer;
+import net.minecraft.server.PacketPlayOutMapChunk;
+import net.minecraft.server.PacketPlayOutMultiBlockChange;
+import net.minecraft.server.PlayerChunk;
+import net.minecraft.server.PlayerChunkMap;
+import net.minecraft.server.RegionFile;
+import net.minecraft.server.RegionFileCache;
+import net.minecraft.server.ServerNBTManager;
+import net.minecraft.server.TileEntity;
+import net.minecraft.server.WorldChunkManager;
+import net.minecraft.server.WorldData;
+import net.minecraft.server.WorldManager;
+import net.minecraft.server.WorldServer;
+import net.minecraft.server.WorldSettings;
+import net.minecraft.server.WorldType;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.block.Biome;
-import org.bukkit.craftbukkit.v1_12_R1.CraftChunk;
-import org.bukkit.craftbukkit.v1_12_R1.CraftServer;
-import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.CraftChunk;
+import org.bukkit.craftbukkit.CraftServer;
+import org.bukkit.craftbukkit.CraftWorld;
+import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.generator.ChunkGenerator;
 
-public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R1.Chunk, ChunkSection[], ChunkSection> {
+public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.Chunk, ChunkSection[], ChunkSection> {
 
     protected static IBlockData air;
     protected static Field fieldBits;
@@ -145,7 +145,7 @@ public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R
             fieldGenLayer1.setAccessible(true);
             fieldGenLayer2.setAccessible(true);
 
-            fieldSave = ReflectionUtils.setAccessible(net.minecraft.server.v1_12_R1.Chunk.class.getDeclaredField("s"));
+            fieldSave = ReflectionUtils.setAccessible(net.minecraft.server.Chunk.class.getDeclaredField("s"));
 
             fieldChunks = ChunkProviderServer.class.getDeclaredField("chunks");
             fieldChunkLoader = ChunkProviderServer.class.getDeclaredField("chunkLoader");
@@ -167,7 +167,7 @@ public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R
             air = (IBlockData) fieldAir.get(null);
             fieldBits = DataPaletteBlock.class.getDeclaredField("b");
             fieldBits.setAccessible(true);
-            getEntitySlices = net.minecraft.server.v1_12_R1.Chunk.class.getDeclaredMethod("getEntitySlices");
+            getEntitySlices = net.minecraft.server.Chunk.class.getDeclaredMethod("getEntitySlices");
             getEntitySlices.setAccessible(true);
             setupAdapter(new FaweAdapter_1_12());
             Fawe.debug("Using adapter: " + getAdapter());
@@ -181,7 +181,7 @@ public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R
             e.printStackTrace();
         }
         try {
-            methodSaveChunk = ChunkProviderServer.class.getDeclaredMethod("saveChunk", net.minecraft.server.v1_12_R1.Chunk.class, boolean.class);
+            methodSaveChunk = ChunkProviderServer.class.getDeclaredMethod("saveChunk", net.minecraft.server.Chunk.class, boolean.class);
         } catch (NoSuchMethodError | NoSuchMethodException ignore) { }
     }
 
@@ -195,7 +195,7 @@ public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R
         getImpWorld();
     }
 
-    private boolean save(net.minecraft.server.v1_12_R1.Chunk chunk, ChunkProviderServer cps) {
+    private boolean save(net.minecraft.server.Chunk chunk, ChunkProviderServer cps) {
         try {
             if (!(boolean) fieldSave.get(chunk)) return false;
             if (methodSaveChunk != null) {
@@ -215,12 +215,12 @@ public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R
     }
 
     @Override
-    public ChunkSection[] getSections(net.minecraft.server.v1_12_R1.Chunk chunk) {
+    public ChunkSection[] getSections(net.minecraft.server.Chunk chunk) {
         return chunk.getSections();
     }
 
     @Override
-    public net.minecraft.server.v1_12_R1.Chunk loadChunk(World world, int x, int z, boolean generate) {
+    public net.minecraft.server.Chunk loadChunk(World world, int x, int z, boolean generate) {
         ChunkProviderServer provider = ((CraftWorld) world).getHandle().getChunkProviderServer();
         if (generate) {
             return provider.getChunkAt(x, z, null, true);
@@ -231,7 +231,7 @@ public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R
 
     @Override
     public ChunkSection[] getCachedSections(World world, int cx, int cz) {
-        net.minecraft.server.v1_12_R1.Chunk chunk = ((CraftWorld) world).getHandle().getChunkProviderServer().getChunkIfLoaded(cx, cz);
+        net.minecraft.server.Chunk chunk = ((CraftWorld) world).getHandle().getChunkProviderServer().getChunkIfLoaded(cx, cz);
         if (chunk != null) {
             return chunk.getSections();
         }
@@ -239,7 +239,7 @@ public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R
     }
 
     @Override
-    public net.minecraft.server.v1_12_R1.Chunk getCachedChunk(World world, int cx, int cz) {
+    public net.minecraft.server.Chunk getCachedChunk(World world, int cx, int cz) {
         return ((CraftWorld) world).getHandle().getChunkProviderServer().getChunkIfLoaded(cx, cz);
     }
 
@@ -249,7 +249,7 @@ public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R
     }
 
     @Override
-    public void saveChunk(net.minecraft.server.v1_12_R1.Chunk chunk) {
+    public void saveChunk(net.minecraft.server.Chunk chunk) {
         chunk.f(true); // Set Modified
         chunk.mustSave = true;
     }
@@ -268,7 +268,7 @@ public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R
                 BiomeBase base = BiomeBase.getBiome(biome.getId());
                 fieldBiomes.set(generator, new BiomeBase[]{base});
                 boolean cold = base.getTemperature() <= 1;
-                net.minecraft.server.v1_12_R1.ChunkGenerator existingGenerator = nmsWorld.getChunkProviderServer().chunkGenerator;
+                net.minecraft.server.ChunkGenerator existingGenerator = nmsWorld.getChunkProviderServer().chunkGenerator;
                 long existingSeed = world.getSeed();
                 {
                     if (genLayer == null) genLayer = new MutableGenLayer(seed);
@@ -316,9 +316,9 @@ public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R
                     boolean mustSave = false;
                     boolean[][] chunksUnloaded = null;
                     { // Unload chunks
-                        Iterator<net.minecraft.server.v1_12_R1.Chunk> iter = provider.a().iterator();
+                        Iterator<net.minecraft.server.Chunk> iter = provider.a().iterator();
                         while (iter.hasNext()) {
-                            net.minecraft.server.v1_12_R1.Chunk chunk = iter.next();
+                            net.minecraft.server.Chunk chunk = iter.next();
                             if (chunk.locX >> 5 == mcaX && chunk.locZ >> 5 == mcaZ) {
                                 boolean isIn = allowed.isInChunk(chunk.locX, chunk.locZ);
                                 if (isIn) {
@@ -392,7 +392,7 @@ public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R
                                                 SetQueue.IMP.addTask(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        net.minecraft.server.v1_12_R1.Chunk chunk = provider.getChunkAt(cx, cz, null, false);
+                                                        net.minecraft.server.Chunk chunk = provider.getChunkAt(cx, cz, null, false);
                                                         if (chunk != null) {
                                                             PlayerChunk pc = getPlayerChunk(nmsWorld, cx, cz);
                                                             if (pc != null) {
@@ -541,7 +541,7 @@ public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R
     }
 
     @Override
-    public int getBiome(net.minecraft.server.v1_12_R1.Chunk chunk, int x, int z) {
+    public int getBiome(net.minecraft.server.Chunk chunk, int x, int z) {
         return chunk.getBiomeIndex()[((z & 15) << 4) + (x & 15)];
     }
 
@@ -568,7 +568,7 @@ public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R
 
     @Override
     public void sendChunk(int x, int z, int bitMask) {
-        net.minecraft.server.v1_12_R1.Chunk chunk = getCachedChunk(getWorld(), x, z);
+        net.minecraft.server.Chunk chunk = getCachedChunk(getWorld(), x, z);
         if (chunk != null) {
             sendChunk(getPlayerChunk((WorldServer) chunk.getWorld(), chunk.locX, chunk.locZ), chunk, bitMask);
         }
@@ -674,7 +674,7 @@ public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R
         return playerChunk;
     }
 
-    public boolean sendChunk(PlayerChunk playerChunk, net.minecraft.server.v1_12_R1.Chunk nmsChunk, int mask) {
+    public boolean sendChunk(PlayerChunk playerChunk, net.minecraft.server.Chunk nmsChunk, int mask) {
         WorldServer w = (WorldServer) nmsChunk.getWorld();
         if (playerChunk == null) {
             return false;
@@ -716,7 +716,7 @@ public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R
         return true;
     }
 
-    public boolean hasEntities(net.minecraft.server.v1_12_R1.Chunk nmsChunk) {
+    public boolean hasEntities(net.minecraft.server.Chunk nmsChunk) {
         try {
             final Collection<Entity>[] entities = (Collection<Entity>[]) getEntitySlices.invoke(nmsChunk);
             for (int i = 0; i < entities.length; i++) {
@@ -899,7 +899,7 @@ public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R
     protected BlockPosition.MutableBlockPosition pos = new BlockPosition.MutableBlockPosition(0, 0, 0);
 
     @Override
-    public CompoundTag getTileEntity(net.minecraft.server.v1_12_R1.Chunk chunk, int x, int y, int z) {
+    public CompoundTag getTileEntity(net.minecraft.server.Chunk chunk, int x, int y, int z) {
         Map<BlockPosition, TileEntity> tiles = chunk.getTileEntities();
         pos.c(x, y, z);
         TileEntity tile = tiles.get(pos);
@@ -919,7 +919,7 @@ public class BukkitQueue_1_12 extends BukkitQueue_0<net.minecraft.server.v1_12_R
 
     @Deprecated
     public boolean unloadChunk(final String world, final Chunk chunk) {
-        net.minecraft.server.v1_12_R1.Chunk c = ((CraftChunk) chunk).getHandle();
+        net.minecraft.server.Chunk c = ((CraftChunk) chunk).getHandle();
         c.mustSave = false;
         if (chunk.isLoaded()) {
             chunk.unload(false, false);
