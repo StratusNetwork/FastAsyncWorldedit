@@ -32,8 +32,7 @@ public class BukkitReflectionUtils {
             final Class<?> bukkitServerClass = server.getClass();
             String[] pas = bukkitServerClass.getName().split("\\.");
             if (pas.length == 5) {
-                final String verB = pas[3];
-                preClassB = "org.bukkit.craftbukkit." + verB;
+                preClassB = "org.bukkit.craftbukkit";
             }
             try {
                 final Method getHandle = bukkitServerClass.getDeclaredMethod("getHandle");
@@ -41,8 +40,7 @@ public class BukkitReflectionUtils {
                 final Class handleServerClass = handle.getClass();
                 pas = handleServerClass.getName().split("\\.");
                 if (pas.length == 5) {
-                    final String verM = pas[3];
-                    preClassM = "net.minecraft.server." + verM;
+                    preClassM = "net.minecraft.server";
                 }
             } catch (final Exception ignored) {
                 MainUtil.handleError(ignored);
@@ -81,12 +79,12 @@ public class BukkitReflectionUtils {
     }
 
     public static Class<?> getNmsClass(final String name) {
-        final String className = "net.minecraft.server." + getVersion() + "." + name;
+        final String className = "net.minecraft.server." + name;
         return ReflectionUtils.getClass(className);
     }
 
     public static Class<?> getCbClass(final String name) {
-        final String className = "org.bukkit.craftbukkit." + getVersion() + "." + name;
+        final String className = "org.bukkit.craftbukkit." + name;
         return ReflectionUtils.getClass(className);
     }
 

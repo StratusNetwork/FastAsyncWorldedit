@@ -53,7 +53,7 @@ shadowJar {
         include(dependency('co.aikar:fastutil-lite:1.0'))
         include(dependency(':core'))
     }
-    archiveName = "${parent.name}-${project.name}-${parent.version}.jar"
+    archiveName = "${parent.name}-${project.name}.jar"
     destinationDir = file '../target'
     relocate('com.google.gson', 'com.sk89q.worldedit.internal.gson')
 }

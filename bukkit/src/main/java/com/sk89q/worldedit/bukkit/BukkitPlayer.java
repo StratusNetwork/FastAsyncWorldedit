@@ -133,17 +133,7 @@ public class BukkitPlayer extends LocalPlayer {
 
     @Override
     public void giveItem(int type, int amt) {
-        final PlayerInventory inv = player.getInventory();
-        final ItemStack newItem = new ItemStack(type, amt);
-        if (type == WorldEdit.getInstance().getConfiguration().wandItem) {
-            inv.remove(newItem);
-        }
-        final ItemStack item = player.getItemInHand();
-        player.setItemInHand(newItem);
-        if (item != null) {
-            inv.addItem(item);
-        }
-        player.updateInventory();
+        player.getInventory().addItem(new ItemStack(type, amt));
     }
 
     @Override

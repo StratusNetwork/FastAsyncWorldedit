@@ -51,6 +51,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
+
+import net.minecraft.server.PlayerChunk;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
@@ -428,6 +430,8 @@ public class FaweBukkit implements IFawe, Listener {
                 }
             }
             Throwable error = null;
+            return getQueue(world);
+            /*
             try {
                 return getQueue(world);
             } catch (Throwable ignore) {
@@ -456,6 +460,7 @@ public class FaweBukkit implements IFawe, Listener {
                 }, 1);
                 hasNMS = false;
             }
+            */
         }
         return new BukkitQueue_All(world);
     }
@@ -621,27 +626,7 @@ public class FaweBukkit implements IFawe, Listener {
     private Version version = null;
 
     public Version getVersion() {
-        Version tmp = this.version;
-        if (tmp == null) {
-            tmp = Version.NONE;
-            for (Version v : Version.values()) {
-                try {
-                    BukkitQueue_0.checkVersion(v.name());
-                    this.version = tmp = v;
-                    if (tmp == Version.v1_12_R1) {
-                        try {
-                            Fawe.debug("Running 1.12 registry dumper!");
-                            NMSRegistryDumper dumper = new NMSRegistryDumper(MainUtil.getFile(plugin.getDataFolder(), "extrablocks.json"));
-                            dumper.run();
-                        } catch (Throwable e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    break;
-                } catch (IllegalStateException e) {}
-            }
-        }
-        return tmp;
+        return Version.v1_12_R2;
     }
 
     public enum Version {
@@ -669,6 +654,7 @@ public class FaweBukkit implements IFawe, Listener {
             case v1_11_R1:
                 return new BukkitQueue_1_11(world);
             case v1_12_R1:
+            case v1_12_R2:
                 return new BukkitQueue_1_12(world);
             default:
             case NONE:
@@ -689,6 +675,7 @@ public class FaweBukkit implements IFawe, Listener {
             case v1_11_R1:
                 return new BukkitQueue_1_11(world);
             case v1_12_R1:
+            case v1_12_R2:
                 return new BukkitQueue_1_12(world);
             default:
             case NONE:

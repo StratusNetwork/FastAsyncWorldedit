@@ -35,7 +35,7 @@ public class WorldCopyClipboard extends ReadOnlyClipboard {
     public WorldCopyClipboard(EditSession editSession, Region region, boolean hasEntities, boolean hasBiomes) {
         super(region);
         this.hasBiomes = hasBiomes;
-        this.hasEntities = hasEntities;
+        this.hasEntities = false;
         final Vector origin = region.getMinimumPoint();
         this.mx = origin.getBlockX();
         this.my = origin.getBlockY();

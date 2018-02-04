@@ -9,6 +9,7 @@ import com.boydti.fawe.object.FaweQueue;
 import com.boydti.fawe.util.MainUtil;
 import com.boydti.fawe.util.MathMan;
 import com.boydti.fawe.util.ReflectionUtils;
+import com.google.common.collect.Iterators;
 import com.sk89q.jnbt.CompoundTag;
 import com.sk89q.jnbt.ListTag;
 import com.sk89q.jnbt.LongTag;
@@ -20,6 +21,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -35,6 +37,7 @@ import net.minecraft.server.DataPaletteBlock;
 import net.minecraft.server.DataPaletteGlobal;
 import net.minecraft.server.Entity;
 import net.minecraft.server.EntityPlayer;
+import net.minecraft.server.EntitySlice;
 import net.minecraft.server.EntityTypes;
 import net.minecraft.server.IBlockData;
 import net.minecraft.server.MinecraftKey;
@@ -245,7 +248,7 @@ public class BukkitChunk_1_12 extends CharFaweChunk<Chunk, BukkitQueue_1_12> {
                                 if (copy != null) {
                                     copy.storeEntity(entity);
                                 }
-                                iter.remove();
+                                ents.remove(entity);
                                 synchronized (BukkitQueue_0.class) {
                                     removeEntity(entity);
                                 }
@@ -258,18 +261,6 @@ public class BukkitChunk_1_12 extends CharFaweChunk<Chunk, BukkitQueue_1_12> {
                 int count = this.getCount(i);
                 if (count == 0) {
                     continue;
-                } else if (count >= 4096) {
-                    Collection<Entity> ents = entities[i];
-                    if (!ents.isEmpty()) {
-                        if (copy != null) {
-                            for (Entity entity : ents) {
-                                copy.storeEntity(entity);
-                            }
-                        }
-                        synchronized (BukkitQueue_0.class) {
-                            ents.clear();
-                        }
-                    }
                 } else {
                     Collection<Entity> ents = entities[i];
                     if (!ents.isEmpty()) {
@@ -291,7 +282,7 @@ public class BukkitChunk_1_12 extends CharFaweChunk<Chunk, BukkitQueue_1_12> {
                                 if (copy != null) {
                                     copy.storeEntity(entity);
                                 }
-                                iter.remove();
+                                //iter.remove();
                                 synchronized (BukkitQueue_0.class) {
                                     removeEntity(entity);
                                 }

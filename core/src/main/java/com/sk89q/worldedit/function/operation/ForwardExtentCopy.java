@@ -151,7 +151,7 @@ public class ForwardExtentCopy implements Operation {
     }
 
     public boolean isCopyEntities() {
-        return copyEntities;
+        return false;
     }
 
     public void setCopyBiomes(boolean copyBiomes) {
