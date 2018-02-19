@@ -1,8 +1,13 @@
 repositories {
+    mavenLocal()
     flatDir {dirs 'lib'}
 }
 dependencies {
     compile project(':core')
+    compile 'com.sk89q.worldedit:worldedit-bukkit:6.1.9-SNAPSHOT'
+    compile(group: 'com.sk89q.worldedit', name: 'worldedit-core', version:'6.1.9-SNAPSHOT') {
+        exclude(module: 'bukkit-classloader-check')
+    }
     compile 'com.sk89q:worldguard:6.0.0-SNAPSHOT'
     compile('com.destroystokyo.paper:paper-api:1.12-R0.1-SNAPSHOT') {
         exclude group: 'net.md-5'
@@ -23,8 +28,6 @@ dependencies {
     compile 'com.palmergames.bukkit:towny:0.84.0.9'
     compile 'com.worldcretornica:plotme_core:0.16.3'
     compile 'junit:junit:4.11'
-    compile 'com.sk89q.worldedit:worldedit-bukkit:6.1.4-SNAPSHOT'
-    compile 'com.sk89q.worldedit:worldedit-core:6.1.4-SNAPSHOT'
     compile 'com.thevoxelbox.voxelsniper:voxelsniper:5.171.0'
     compile 'org.bukkit.craftbukkit.v1_9R2:craftbukkitv1_9R2:1.9.4'
     compile 'org.bukkit.craftbukkit:Craftbukkit:1.7.10'

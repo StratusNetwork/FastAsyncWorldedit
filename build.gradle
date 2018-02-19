@@ -1,5 +1,6 @@
 buildscript {
     repositories {
+        mavenLocal()
         mavenCentral()
         maven { url = "https://oss.sonatype.org/content/repositories/snapshots/" }
         jcenter()
@@ -94,8 +95,8 @@ subprojects {
     }
 
     repositories {
-        maven {url "https://mvnrepository.com/artifact/"}
         mavenLocal()
+        maven {url "https://mvnrepository.com/artifact/"}
         mavenCentral()
         maven {url "http://repo.dmulloy2.net/content/groups/public/"}
         maven {url "https://repo.destroystokyo.com/repository/maven-public//"}
@@ -110,5 +111,6 @@ subprojects {
         maven {url "http://repo.spongepowered.org/maven"}
         maven {url "https://repo.inventivetalent.org/content/groups/public/"}
         maven {url "http://dl.bintray.com/tastybento/maven-repo"}
+        maven {url "https://storage.googleapis.com/artifacts.stratus-181519.appspot.com/artifacts/master/.m2/"}
     }
 }
